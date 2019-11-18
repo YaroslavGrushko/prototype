@@ -139,8 +139,11 @@ def record_to_file(path):
 # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>Varification
     # check if X_inspect and  X_pred belongs to one cluster
 def check_by_Verificator(X_inspect, Y_inspect, X_pred, Y_pred, result_individual, IDENT_flag):
-
+    # # ///////////////////////////////////////////////////////////////////////////////////////////////////
+    #    set to zero
     novelty_relation = 0
+    # //////////////////////////////////////////////////////////////////////////////
+
     #  Local Outlier Factor (LOF)
     # novelty = True / it is to make novelty prediction.
     # when you train clean data and check it with anomaly on new data
@@ -154,15 +157,17 @@ def check_by_Verificator(X_inspect, Y_inspect, X_pred, Y_pred, result_individual
     print(dict(zip(unique, counts)))
     # (-1)/1   novelty_relation = not_equels_count/equels_count
     if(len(counts)>1):
-        novelty_relation = counts[1]/counts[0]
+        novelty_relation = counts[1]/(counts[0]+counts[1])
     else:
         novelty_relation = 9999
 
     print('NOVELTY_RELATION: '+str('%.3f'%(novelty_relation)))
-    if novelty_relation > 0.68:
+    # maxVerif
+    if novelty_relation >= 0.4:
         VARIFY_flag = 2
     else:
-        if novelty_relation < 0.4:
+        # minVerif
+        if novelty_relation < 0.2:
             VARIFY_flag = 0
         else:
             VARIFY_flag = 1

@@ -169,120 +169,120 @@ def record_to_file(path):
 
 if __name__ == '__main__':
 
-# 3 REAL PERSONS VOICE RECORDING PART : >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-# first sample in Db: 
-   # create dataset.csv with mfccs header
-    with open('demo_dataset.csv','w') as file:
-        # strLine = 'person, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13'
-        strLine = 'person, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24'
-        file.write(strLine)
-        file.write('\n')
-    # let's split voices:
-    split_all_files(PERSONS_DIRECTORY_FROM, dataset_directory, TIME_TO_SPLIT)
-    # extract all person's (folders)
-    persons_to_learn = os.listdir(dataset_directory)
-    # let's write each person to Db
-    for person_dir in persons_to_learn:
-        # extract full person directory path
-        full_person_dir = os.path.join(dataset_directory, person_dir)
-        # all audio-files in current person's folder
-        files = [os.path.join(full_person_dir,f) for f in os.listdir(full_person_dir) if os.path.isfile(os.path.join(full_person_dir, f))]
-        # selected audio files from person's folder
-        files_new = files[:number_to_learn]
+# # 3 REAL PERSONS VOICE RECORDING PART : >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+# # first sample in Db: 
+#    # create dataset.csv with mfccs header
+#     with open('demo_dataset.csv','w') as file:
+#         # strLine = 'person, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13'
+#         strLine = 'person, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24'
+#         file.write(strLine)
+#         file.write('\n')
+#     # let's split voices:
+#     split_all_files(PERSONS_DIRECTORY_FROM, dataset_directory, TIME_TO_SPLIT)
+#     # extract all person's (folders)
+#     persons_to_learn = os.listdir(dataset_directory)
+#     # let's write each person to Db
+#     for person_dir in persons_to_learn:
+#         # extract full person directory path
+#         full_person_dir = os.path.join(dataset_directory, person_dir)
+#         # all audio-files in current person's folder
+#         files = [os.path.join(full_person_dir,f) for f in os.listdir(full_person_dir) if os.path.isfile(os.path.join(full_person_dir, f))]
+#         # selected audio files from person's folder
+#         files_new = files[:number_to_learn]
 
-        # let's foreach every file from person's folder
-        for demo in files_new:
-            # PUT THEIR NAME OF CURRENT INDIVIDUAL SAMPLE
-            LABEL = person_dir
-            # # for DICTORS: >>>>>>>>>>>>>>>>>>>>>>>>>
-            #     # let's convert .flac to .wav
-            # demo = AudioSegment.from_file(demo, "flac")
+#         # let's foreach every file from person's folder
+#         for demo in files_new:
+#             # PUT THEIR NAME OF CURRENT INDIVIDUAL SAMPLE
+#             LABEL = person_dir
+#             # # for DICTORS: >>>>>>>>>>>>>>>>>>>>>>>>>
+#             #     # let's convert .flac to .wav
+#             # demo = AudioSegment.from_file(demo, "flac")
 
-            # # convert to .wav
-            # demo.export("demo.wav", format="wav")
-            # (rate,sig) = wav.read("demo.wav")
-            # # for DICTORS <<<<<<<<<<<<<<<<<<<<<<<<<
+#             # # convert to .wav
+#             # demo.export("demo.wav", format="wav")
+#             # (rate,sig) = wav.read("demo.wav")
+#             # # for DICTORS <<<<<<<<<<<<<<<<<<<<<<<<<
 
-            # for REAL VOICES: >>>>>>>>>>>>>>>>>>>>
-            # read .wav file
-            (rate,sig) = wav.read(demo)
-            # extract mfccs from demo.wav
-            # for REAL VOICES <<<<<<<<<<<<<<<<<<<<
+#             # for REAL VOICES: >>>>>>>>>>>>>>>>>>>>
+#             # read .wav file
+#             (rate,sig) = wav.read(demo)
+#             # extract mfccs from demo.wav
+#             # for REAL VOICES <<<<<<<<<<<<<<<<<<<<
             
-            # EXTRACT MFCCs FROM SIG, RATE:
-            mfcc_feat = mfcc(sig,rate,winlen=0.094,nfft=FFT_LENGTH, numcep=numcep, lowfreq=lowfreq, highfreq=highfreq) #bachlor parameter
+#             # EXTRACT MFCCs FROM SIG, RATE:
+#             mfcc_feat = mfcc(sig,rate,winlen=0.094,nfft=FFT_LENGTH, numcep=numcep, lowfreq=lowfreq, highfreq=highfreq) #bachlor parameter
 
-            #let's dump mfccs string to .csv:
-            with open('demo_dataset.csv','a') as file:
-                for line in mfcc_feat:
-                    strLine = str(LABEL) + ',' + ','.join(map(str, line))
-                    file.write(strLine)
-                    file.write('\n')
-        # message to terminal after every person is recorded to DB-file
-        print("mfccs of "+str(person_dir)+" was recorded to .csv")
+#             #let's dump mfccs string to .csv:
+#             with open('demo_dataset.csv','a') as file:
+#                 for line in mfcc_feat:
+#                     strLine = str(LABEL) + ',' + ','.join(map(str, line))
+#                     file.write(strLine)
+#                     file.write('\n')
+#         # message to terminal after every person is recorded to DB-file
+#         print("mfccs of "+str(person_dir)+" was recorded to .csv")
                         
-# 3 REAL PERSONS VOICE RECORDING PART  <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+# # 3 REAL PERSONS VOICE RECORDING PART  <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
 # =========================================================================================
 
-# # REAL PERSON VOICE RECORDING PART: >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-# #  recording part
-#     # print("please, enter your name:")
-#     # label = input("")
-#     # PUT THEIR NAME OF CURRENT INDIVIDUAL SAMPLE
-#     # LABEL = "y"
-#     # print("ваше ім'я:" + str(LABEL))
-#     LABEL = input("введіть першу букву свого імені (на англійській): ")
+# REAL PERSON VOICE RECORDING PART: >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+#  recording part
+    # print("please, enter your name:")
+    # label = input("")
+    # PUT THEIR NAME OF CURRENT INDIVIDUAL SAMPLE
+    # LABEL = "y"
+    # print("ваше ім'я:" + str(LABEL))
+    LABEL = input("введіть своє ім'я (на англійській): ")
 
-#     print('==================================================================================')
-#     print("прочитайте фразу в мікрофон поки не вісвітиться повідомлення (20 сек):")
-#     print('==================================================================================')
+    print('==================================================================================')
+    print("прочитайте фразу в мікрофон поки не вісвітиться повідомлення (20 сек):")
+    print('==================================================================================')
 
-#     print(read_random_text(10))
-#     # print(str(random_sentence))
-#     record_to_file('demo.wav')
+    print(read_random_text(10))
+    # print(str(random_sentence))
+    record_to_file('demo.wav')
 
-#     print('==================================================================================')
-#     print('==================================================================================')
-#     print('==================================================================================')
-#     print('==================================================================================')
-#     print('=================================ФРАЗА ЗАПИСАНА!=================================')
-#     print('==================================================================================')
-#     print('==================================================================================')
-#     print('==================================================================================')
-#     print('==================================================================================')
+    print('==================================================================================')
+    print('==================================================================================')
+    print('==================================================================================')
+    print('==================================================================================')
+    print('=================================ФРАЗА ЗАПИСАНА!=================================')
+    print('==================================================================================')
+    print('==================================================================================')
+    print('==================================================================================')
+    print('==================================================================================')
     
-#     # # COMMENT CODE BELOW IF THIS IS NOT FIRST RECORD FOR THIS DB: >>>>>>>>>
-#     # # create dataset.csv with mfccs header
-#     # with open('demo_dataset.csv','w') as file:
-#     #     # strLine = 'person, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13'
-#     #     strLine = 'person, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24'
-#     #     file.write(strLine)
-#     #     file.write('\n')
-#     # # COMMENT CODE ABOVE IF THIS IS NOT FIRST RECORD FOR THIS DB: <<<<<<<<<
+    # # COMMENT CODE BELOW IF THIS IS NOT FIRST RECORD FOR THIS DB: >>>>>>>>>
+    # # create dataset.csv with mfccs header
+    # with open('demo_dataset.csv','w') as file:
+    #     # strLine = 'person, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13'
+    #     strLine = 'person, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24'
+    #     file.write(strLine)
+    #     file.write('\n')
+    # # COMMENT CODE ABOVE IF THIS IS NOT FIRST RECORD FOR THIS DB: <<<<<<<<<
 
 
-#     # let's delete directory:
-#     delete_folder_content(temp_directory_for_persons)
-#     # let's split voice to smaller audio files:
-#     split_file('',temp_directory_for_persons, 'demo.wav', TIME_TO_SPLIT)
+    # let's delete directory:
+    delete_folder_content(temp_directory_for_persons)
+    # let's split voice to smaller audio files:
+    split_file('',temp_directory_for_persons, 'demo.wav', TIME_TO_SPLIT)
     
-#      # all audio-files in current person's folder
-#     files = [os.path.join(temp_directory_for_phrases,f) for f in os.listdir(temp_directory_for_phrases) if os.path.isfile(os.path.join(temp_directory_for_phrases, f))]
+     # all audio-files in current person's folder
+    files = [os.path.join(temp_directory_for_phrases,f) for f in os.listdir(temp_directory_for_phrases) if os.path.isfile(os.path.join(temp_directory_for_phrases, f))]
 
-#     files_to_learn = files[:number_to_learn]              
+    files_to_learn = files[:number_to_learn]              
 
-#     for file_phrase in files_to_learn:
-#         (rate,sig) = wav.read(file_phrase)
-#         mfcc_feat = mfcc(sig,rate,winlen=0.094,nfft=FFT_LENGTH, numcep=numcep, lowfreq=lowfreq, highfreq=highfreq) #bachlor parameter
+    for file_phrase in files_to_learn:
+        (rate,sig) = wav.read(file_phrase)
+        mfcc_feat = mfcc(sig,rate,winlen=0.094,nfft=FFT_LENGTH, numcep=numcep, lowfreq=lowfreq, highfreq=highfreq) #bachlor parameter
 
-#         # st sample in Db:
-#         #text=List of strings to be written to file
-#         with open('demo_dataset.csv','a') as file:
-#             for line in mfcc_feat:
-#                 strLine = str(LABEL) + ',' + ','.join(map(str, line))
-#                 file.write(strLine)
-#                 file.write('\n')
+        # st sample in Db:
+        #text=List of strings to be written to file
+        with open('demo_dataset.csv','a') as file:
+            for line in mfcc_feat:
+                strLine = str(LABEL) + ',' + ','.join(map(str, line))
+                file.write(strLine)
+                file.write('\n')
 
-#     print("mfccs було записано в .csv")
-# # REAL PERSON VOICE RECORDING PART <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+    print("mfccs було записано в .csv")
+# REAL PERSON VOICE RECORDING PART <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
