@@ -32,9 +32,10 @@ RELATION: 5.516
 individual: yaroslav  
 action: ALLOW  
 #### Description of authentication.py output:
-individual: yaroslav is person that was identificated with voice that was recorded on step 4. action: ALLOW mean that application recognized this person and varified as yaroslav and allow access to, exampl, secret files.  
-RELATION is the ratio of the probability of the forecast of the person with the highest probability of recognition to the probability of the second person with the highest probability. 
-NOVELTY_RELATION is the probability ratio, which corresponds to the fact that the two vectors are the same. (0<=NOVELTY_RELATION<=1)
+individual: yaroslav is person that was identificated with voice that was recorded on step 4. action:   
+ALLOW mean that application recognized this person and varified as yaroslav and allow access to, exampl, secret files.    
+RELATION is the ratio of the probability of the forecast of the person with the highest probability of recognition to the probability of the second person with the highest probability.  
+NOVELTY_RELATION is the probability ratio, which corresponds to the fact that the two vectors are the same. (0<=NOVELTY_RELATION<=1)  For my example above NOVELTY_RELATION=202/(240+202)=0.457. 202 responsible for two voice samples (input with authentication and identified person) is same and 240 - that this two vectors is different.
 
 ## Other options
 You can previoiusly record voices to real_voices_texts folder one time (than you needen't to record voice every time you run writeToDb.py), to do it  instead of **1st step** follow instructions below.  
