@@ -12,13 +12,13 @@ o now you have database of voices of 3 different people 2 minutes duration each.
 uncomment this  
 ...  
 3 REAL PERSONS VOICE RECORDING PART  <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<  
-
-And comment this part:
-REAL PERSON VOICE RECORDING PART: >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-...
-comment this
-...
-REAL PERSON VOICE RECORDING PART <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-
+  
+And comment this part:  
+REAL PERSON VOICE RECORDING PART: >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>  
+...  
+comment this  
+...  
+REAL PERSON VOICE RECORDING PART <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<  
+  
 launch writeToDb.py. The result of running of this file it creating dataset of voiceprints (24 MFCCs coeficients) of three different people (that you record it's voices on previous step). It is demo_dataset.csv file you can check it. 
 
