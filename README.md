@@ -1,4 +1,4 @@
-# prototype
+# Voice authentication application prototype based on MFCCs, K-Nearest Neighbours (K-NN), Local Outlier Factor (LOF). With using of [Scikit learn](https://scikit-learn.org/stable/) and [python_speech_features](https://python-speech-features.readthedocs.io/en/latest/) libs.
  
 # steps to run
 
