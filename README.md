@@ -1,6 +1,9 @@
 # Voice authentication application prototype based on MFCCs, K-Nearest Neighbours (K-NN), Local Outlier Factor (LOF). 
 ### With using of [Scikit learn](https://scikit-learn.org/stable/) and [python_speech_features](https://python-speech-features.readthedocs.io/en/latest/) libs.
- 
+## Theoretical background of using such Mathematical and Machine Learning methods  
+This application was created as part of a [master's thesis](https://ela.kpi.ua/handle/123456789/32176) [(presentation(in Ukrainian language))](http://mmsa.kpi.ua/sites/default/files/abstracts/2019_m_sai_grushko_y_uk_presentation.pdf). As you can see in the presentation a unique scheme of voice authentication system was proposed, the main blocks of which were the voiceprint extraction method, **MFCCs**, **K-NN** classifier, **LOF** method of detecting anomalies. System parameters were chosen to minimize computer resources, minimize incorrectly recognized persons and maximize correctly recognized persons. This parameters were optimized using a voice samples of 40 different individuals. Precision of this app on 80 voice samples of **40** different peoples was **96%.** 
+In terms of speed, the average duration of voice processing when learning the system was 22 seconds (processed 20 seconds of speech). And during authentication, when 6 seconds of speech were processed, signal processing lasted **2 seconds**.
+Thus, the primary goal of the thesis was achieved - to build a fast and unpretentious to computing resources system of voice biometrics, which, moreover, would have a sufficiently high accuracy.
 ## Steps to run project
 ### 1. Initial voice recording and Voiceprint (MFCCs) extraction   
 #### Open writeToDb.py file and
