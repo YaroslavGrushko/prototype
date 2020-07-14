@@ -9,11 +9,11 @@ Thus, the primary goal of the thesis was achieved - to build a fast and unpreten
 #### Open writeToDb.py file and
 comment this: 
 ```
-#3 REAL PERSONS VOICE RECORDING PART : >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>  
+# 3 REAL PERSONS VOICE RECORDING PART : >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>  
 ...  
-#comment this  
+# comment this  
 ...  
-#3 REAL PERSONS VOICE RECORDING PART  <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<   
+# 3 REAL PERSONS VOICE RECORDING PART  <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<   
 ```
 And uncomment this part:  
 ```
@@ -31,16 +31,18 @@ To learn Classifier run learning.py . Python will use demo_dataset.csv file with
   
 ### 4. Let's pass authentication 
 Launch authentication.py file and follow instructions in terminal. The result will be something like that (for me):  
+```
 {-1: 240, 1: 202}  
 NOVELTY_RELATION: 0.457  
 RELATION: 5.516  
 individual: yaroslav  
-action: ALLOW  
+action: ALLOW
+```
 #### Description of authentication.py output:
-individual: yaroslav is person that was identificated with voice that was recorded on step 4. action:   
-ALLOW mean that application recognized this person and varified as yaroslav and allow access to, exampl, secret files.    
-RELATION is the ratio of the probability of the forecast of the person with the highest probability of recognition to the probability of the second person with the highest probability.  
-NOVELTY_RELATION is the probability ratio, which corresponds to the fact that the two vectors are the same. (0<=NOVELTY_RELATION<=1)  For my example above NOVELTY_RELATION=202/(240+202)=0.457. 202 responsible for two voice samples (input with authentication and identified person) is same and 240 - that this two vectors is different.
+```individual: yaroslav``` is person that was identificated with voice that was recorded on step 4. action:   
+```ALLOW``` mean that application recognized this person and varified as yaroslav and allow access to, exampl, secret files.    
+```RELATION``` is the ratio of the probability of the forecast of the person with the highest probability of recognition to the probability of the second person with the highest probability.  
+```NOVELTY_RELATION``` is the probability ratio, which corresponds to the fact that the two vectors are the same. (0<=```NOVELTY_RELATION```<=1)  For my example above ```NOVELTY_RELATION```=202/(240+202)=0.457. 202 responsible for two voice samples (input with authentication and identified person) is same and 240 - that this two vectors is different.
 
 ## Other options
 You can previoiusly record voices to real_voices_texts folder one time (than you needen't to record voice every time you run writeToDb.py), to do it  instead of **1st step** follow instructions below.  
@@ -50,18 +52,19 @@ Record samples of voice (2 minutes length) of three different people with this f
 o now you have database of voices of 3 different people 2 minutes duration each.  
 ### 2. MFCCs coeficients extracting from voice  
 Go to writeToDb.py file and uncomment (if it commented) section    
-  
-3 REAL PERSONS VOICE RECORDING PART : >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>  
+```  
+# 3 REAL PERSONS VOICE RECORDING PART : >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>  
 ...  
-uncomment this  
+# uncomment this  
 ...  
-3 REAL PERSONS VOICE RECORDING PART  <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<  
-  
-And comment this part:  
-REAL PERSON VOICE RECORDING PART: >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>  
+# 3 REAL PERSONS VOICE RECORDING PART  <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<  
+``` 
+And comment this part: 
+```
+# REAL PERSON VOICE RECORDING PART: >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>  
 ...  
-comment this  
+# comment this  
 ...  
-REAL PERSON VOICE RECORDING PART <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<  
-  
+# REAL PERSON VOICE RECORDING PART <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<  
+```  
 launch writeToDb.py. The result of running of this file it creating dataset of voiceprints (24 MFCCs coeficients) of three different people (that you record it's voices on previous step). It is demo_dataset.csv file you can check it. 
