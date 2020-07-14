@@ -25,9 +25,27 @@ REAL PERSON VOICE RECORDING PART <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
   
 launch writeToDb.py. The result of running of this file it creating dataset of voiceprints (24 MFCCs coeficients) of three different people (that you record it's voices on previous step). It is demo_dataset.csv file you can check it. 
 
+### 1. Initial voice recording and Voiceprint (MFCCs) extraction   
+#### 1.1 Open writeToDb.py file and
+comment this:
+3 REAL PERSONS VOICE RECORDING PART : >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>  
+...  
+comment this  
+...  
+3 REAL PERSONS VOICE RECORDING PART  <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<  
+  
+And uncomment this part:  
+REAL PERSON VOICE RECORDING PART: >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>  
+...  
+uncomment this  
+...  
+u
+#### 1.2 then launch this writeToDb.py and follow the instructions in terminal. 
+such way record the voices of 3 people  
+  
 ### 3. Learning K-NN Classifier   
 To learn Classifier run learning.py . Python will use demo_dataset.csv file with MFCCs coefficients created on previous step. The result of learning will be model of K-NN classifier (Classifier_model.joblib) and LabelEncoder.joblib file, that will be  needed for authentication.  
-
+  
 ### 4. Let's pass authentication 
 Launch authentication.py file and follow instructions in terminal. The result will be something like that (for me):  
 {-1: 240, 1: 202}  
@@ -35,6 +53,7 @@ NOVELTY_RELATION: 0.457
 RELATION: 5.516  
 individual: yaroslav  
 action: ALLOW  
+#### Description of authentication.py output:
 individual: yaroslav is person that was identificated with voice that was recorded on step 4. action: ALLOW mean that application recognized this person and varified as yaroslav and allow access to, exampl, secret files.  
 RELATION is the ratio of the probability of the forecast of the person with the highest probability of recognition to the probability of the second person with the highest probability. 
 NOVELTY_RELATION is the probability ratio, which corresponds to the fact that the two vectors are the same. (0<=NOVELTY_RELATION<=1)
